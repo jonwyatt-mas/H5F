@@ -140,16 +140,16 @@
                     addClass(siblings[i],args.validClass);
                   }
                 }
-                evtName = 'valid';
+                evtName = args.validClass;
             } else if(!events.test(curEvt)) {
                 if(el.validity.valueMissing) {
                     removeClass(el,[args.invalidClass,args.validClass]);
                     addClass(el,args.requiredClass);
-                    evtName = 'required';
+                    evtName = args.requiredClass;
                 } else if(!el.validity.valid) {
                     removeClass(el,[args.validClass,args.requiredClass]);
                     addClass(el,args.invalidClass);
-                    evtName = 'invalid';
+                    evtName = args.invalidClass;
                 }
             } else if(el.validity.valueMissing) {
                 removeClass(el,[args.requiredClass,args.invalidClass,args.validClass]);
