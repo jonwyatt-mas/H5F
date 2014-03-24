@@ -153,7 +153,6 @@
                 }
             } else if(el.validity.valueMissing) {
                 removeClass(el,[args.requiredClass,args.invalidClass,args.validClass]);
-                evtName = 'noValue';
             }
             if(curEvt === "input" && checkForm) {
                 // If input is triggered remove the keyup event
