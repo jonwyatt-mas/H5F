@@ -9,28 +9,7 @@
     nickname = document.getElementById("nickname"),
     radioFemale = document.getElementById("female"),
     radioMale = document.getElementById("male"),
-    tel = document.getElementById("tel"),
     eventName = '';
-
-  function dispatchEvent(element, eventName) {
-    var event; // The custom event that will be created
-
-    if (document.createEvent) {
-      event = document.createEvent("HTMLEvents");
-      event.initEvent(eventName, true, true);
-    } else {
-      event = document.createEventObject();
-      event.eventType = eventName;
-    }
-
-    event.eventName = eventName;
-
-    if (document.createEvent) {
-      element.dispatchEvent(event);
-    } else {
-      element.fireEvent("on" + event.eventType, event);
-    }
-  }
 
   H5F.setup(document.getElementById("qunit-fixture"), {
     onStatusChange: function(el, evt) {
@@ -40,21 +19,6 @@
 
   test("H5F global", function() {
     ok(window.H5F, 'H5F global exists');
-  });
-
-  module("Events");
-
-  test("are triggered on validity state change", function() {
-    eventName = '';
-    tel.value = '1234567890';
-    dispatchEvent(tel, 'blur');
-    equal(eventName, 'valid');
-    tel.value = '';
-    tel.focus();
-    equal(eventName, 'noValue');
-    tel.value = 'asdf';
-    dispatchEvent(tel, 'blur');
-    equal(eventName, 'invalid');
   });
 
   module("Validity API");
@@ -93,6 +57,7 @@
 
   test("radio buttons  have correct properties", function() {
     ok( radioFemale.validity, "Female Radio button has validity propery");
+    radioFemale.checked = false;
     radioFemale.checkValidity();
     equal( radioFemale.validity.valid, false, "Female RadioButton is currently invalid ");
     ok( radioMale.validity, "Male Radio button has validity propery");
@@ -108,8 +73,7 @@
     ok( radioFemale.validity, "Female Radio button is valid" );
     radioMale.checkValidity();
     ok( radioMale.validity, "Male Radio button is valid when Female is checked" );
-    dispatchEvent(radioFemale, 'blur');
-    notEqual( radioMale.className, "required", "Male Radio button is valid when Female is checked" );
+    radioFemale.checkValidity();
   });
 
   module("Form validity");
