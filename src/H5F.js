@@ -160,7 +160,9 @@
                 checkForm = false;
             }
 
-            evtName && args.onStatusChange && args.onStatusChange(el, evtName);
+            if (evtName && args.onStatusChange) {
+              args.onStatusChange(el, evtName);
+            }
         }
     };
     checkValidity = function(el) {
