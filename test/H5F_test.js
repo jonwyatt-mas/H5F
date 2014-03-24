@@ -9,7 +9,7 @@
     nickname = document.getElementById("nickname"),
     radioFemale = document.getElementById("female"),
     radioMale = document.getElementById("male"),
-      button = document.getElementById("btn"),
+    tel = document.getElementById("tel"),
     eventName = '';
 
   function dispatchEvent(element, eventName) {
